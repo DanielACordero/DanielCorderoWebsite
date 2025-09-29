@@ -1,0 +1,537 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>The Architect Of Sound - Daniel Cordero</title>
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css?family=Inter:400,700,900&display=swap"
+        />
+        <style>
+            body {
+                margin: 0;
+                font-family: "Inter", sans-serif;
+                background: #0f172a;
+                color: #cbd5e1;
+            }
+            .main-container {
+                max-width: 950px;
+                margin: 40px auto;
+                background: rgba(30, 41, 59, 0.64);
+                border-radius: 14px;
+                border: 1px solid #334155;
+                box-shadow: 0 8px 40px rgba(0, 0, 0, 0.29);
+                padding: 48px 24px 30px 24px;
+            }
+            .logo-image {
+                display: block;
+                margin: 0 auto 24px auto;
+                width: 190px;
+                filter: drop-shadow(0 0 30px rgba(125, 211, 252, 0.6));
+                border-radius: 12px;
+                background: transparent;
+            }
+            .headline {
+                text-align: center;
+                font-size: 2.7em;
+                font-weight: 900;
+                background: linear-gradient(90deg, #7dd3fc, #818cf8);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                margin-bottom: 18px;
+            }
+            .sub-headline {
+                text-align: center;
+                font-size: 1.18em;
+                color: #bae6fd;
+                margin-bottom: 32px;
+            }
+            .form-container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin-bottom: 32px;
+            }
+            .form-prompt-text {
+                color: #bae6fd;
+                font-size: 1em;
+                font-weight: 700;
+                margin-bottom: 12px;
+                text-align: center;
+            }
+            .email-row {
+                display: flex;
+                gap: 12px;
+                margin-bottom: 10px;
+                width: 100%;
+                max-width: 430px;
+            }
+            .email-input {
+                flex: 1;
+                padding: 13px;
+                border-radius: 9px;
+                border: 1.7px solid #475569;
+                font-size: 1em;
+                color: #fff;
+                background: #334155;
+                outline: none;
+                transition: border 0.3s;
+            }
+            .email-input:focus {
+                border: 2.2px solid #38bdf8;
+                background: #1e293b;
+            }
+            .email-input.error {
+                border: 2.2px solid #f87171;
+                background: #334155;
+            }
+            .submit-button {
+                padding: 13px 27px;
+                background: linear-gradient(45deg, #002366, #4169e1, #002366);
+                color: #fff;
+                font-weight: bold;
+                border: none;
+                border-bottom: 4px solid #c5b358;
+                border-radius: 8px;
+                cursor: pointer;
+                transition: box-shadow 0.3s;
+                font-size: 1em;
+                box-shadow: 0 0 6px #4169e1;
+            }
+            .submit-button:hover {
+                background: linear-gradient(45deg, #4169e1, #87cefa, #4169e1);
+                box-shadow: 0 0 20px #4169e1;
+            }
+            .incentive-text {
+                color: #94a3b8;
+                font-size: 0.99em;
+                text-align: center;
+                margin-bottom: 10px;
+            }
+            .success-message {
+                display: none;
+                color: #4ade80;
+                font-size: 1.18em;
+                text-align: center;
+                margin-top: 8px;
+            }
+            .success-message.active {
+                display: block;
+            }
+            .section-divider {
+                margin: 38px auto 16px auto;
+                text-align: center;
+                font-weight: 700;
+                font-size: 1.35em;
+                color: #bae6fd;
+                border-bottom: 2px solid #334155;
+                max-width: 340px;
+                padding-bottom: 6px;
+            }
+            /* ------ Services ------ */
+            .service-tiers {
+                display: flex;
+                flex-direction: column;
+                gap: 32px;
+            }
+            .tier-title {
+                font-size: 1.19em;
+                color: #7dd3fc;
+                font-weight: 700;
+                margin-bottom: 2px;
+            }
+            .tier-desc {
+                color: #a7c7e7;
+                margin-bottom: 17px;
+            }
+            .packages {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 18px;
+            }
+            .package-card {
+                background: #1e293b;
+                border-radius: 10px;
+                padding: 14px 16px 18px 16px;
+                box-shadow: 0 4px 13px rgba(30, 41, 59, 0.21);
+                min-width: 230px;
+                flex: 1 1 255px;
+                margin-bottom: 6px;
+                border: 1px solid #334155;
+            }
+            .package-title {
+                font-weight: 900;
+                color: #e0e7ef;
+            }
+            .package-price {
+                color: #4ade80;
+                font-size: 1.11em;
+                font-weight: 700;
+                margin-top: 4px;
+            }
+            .package-desc {
+                color: #acd3f1;
+                margin: 10px 0 9px 0;
+            }
+            /* Portfolio Gallery */
+            .portfolio-section {
+                margin-top: 42px;
+            }
+            .portfolio-gallery {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+                gap: 23px;
+                margin-bottom: 7px;
+            }
+            .portfolio-item {
+                background: #1e293b;
+                border-radius: 11px;
+                box-shadow: 0 4px 18px rgba(30, 41, 59, 0.22);
+                transition: transform 0.3s;
+            }
+            .portfolio-img {
+                width: 100%;
+                border-radius: 11px 11px 0 0;
+                display: block;
+                aspect-ratio: 16/10;
+                object-fit: cover;
+            }
+            .portfolio-item:hover {
+                transform: scale(1.04);
+                box-shadow: 0 10px 34px #818cf8;
+            }
+            .portfolio-caption {
+                color: #e0e7ef;
+                font-size: 1.03em;
+                text-align: center;
+                padding: 8px 0 8px 0;
+            }
+            .soundcloud-section {
+                margin: 48px 0 26px 0;
+                text-align: center;
+            }
+            .footer {
+                text-align: center;
+                color: #64748b;
+                padding-top: 38px;
+                font-size: 0.95em;
+            }
+            @media screen and (max-width: 700px) {
+                .main-container {
+                    padding: 16px 4px;
+                }
+                .headline {
+                    font-size: 1.45em;
+                }
+                .portfolio-gallery {
+                    grid-template-columns: 1fr;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="main-container">
+            <!-- Logo -->
+            <img
+                src="Architect_of_soundLOGO.jpeg"
+                alt="The Architect of Sound Logo"
+                class="logo-image"
+            />
+            <!-- Headline -->
+            <div class="headline">
+                Your Personal Blueprint for a Career in Music.
+            </div>
+            <div class="sub-headline">
+                One-on-one mentoring, artist development, and music production
+                to help you build your career. Explore my services and apparel
+                designed for creative professionals.
+            </div>
+
+            <!-- Email Signup -->
+            <div class="form-container">
+                <div class="form-prompt-text">
+                    Join my mailing list for updates.
+                </div>
+                <form id="mailForm" autocomplete="on">
+                    <div class="email-row">
+                        <input
+                            type="email"
+                            id="emailInput"
+                            class="email-input"
+                            placeholder="Enter your email"
+                            required
+                        />
+                        <button type="submit" class="submit-button">
+                            Get Access
+                        </button>
+                    </div>
+                </form>
+                <div class="incentive-text">
+                    Access launch-day offers and the private "Architect's
+                    Blueprint" playlist.
+                </div>
+                <div id="successMsg" class="success-message">
+                    Thank you! We've received your email. Keep an eye on your
+                    inbox.
+                </div>
+            </div>
+
+            <div class="section-divider">Work With The Architect</div>
+            <div class="service-tiers">
+                <div class="tier">
+                    <div class="tier-title">Scalable Community Offerings</div>
+                    <div class="tier-desc">
+                        Share your music journey with a larger community. All
+                        packages require a rate request and a short description
+                        of your current project, including demos where possible.
+                    </div>
+                    <div class="packages">
+                        <div class="package-card">
+                            <div class="package-title">Forge Your Voice</div>
+                            <div class="package-price">Request Rate</div>
+                            <div class="package-desc">
+                                Gamified vocal training to improve your breath
+                                control and pitch accuracy.<br />
+                                <strong>How to book:</strong> Describe your
+                                goals and provide a demo for assessment. First
+                                call or live session requires an appointment
+                                booking (fee applies).
+                            </div>
+                        </div>
+                        <div class="package-card">
+                            <div class="package-title">Drum Genius Pack</div>
+                            <div class="package-price">Request Rate</div>
+                            <div class="package-desc">
+                                Upload your demo or sample for analysis. Receive
+                                a custom drum pack built for your style.<br />
+                                <strong>How to book:</strong> Send a project
+                                description and sample/demo. One-on-one call to
+                                discuss goals incurs a booking cost.
+                            </div>
+                        </div>
+                        <div class="package-card">
+                            <div class="package-title">
+                                Group Workshops/Masterclasses
+                            </div>
+                            <div class="package-price">Request Rate</div>
+                            <div class="package-desc">
+                                Online masterclasses tailored for groups (vocal
+                                production, crafting signature sounds).<br />
+                                <strong>How to book:</strong> Provide group
+                                size, project aims, and relevant demos. Booking
+                                confirmation involves a consultative call (fee
+                                applies).
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tier">
+                    <div class="tier-title">Premium Individual Packages</div>
+                    <div class="tier-desc">
+                        Individual creative partnerships and production
+                        projects. All services are initiated through rate
+                        requests, project descriptions, and demo submissions.
+                        Appointment and assessment calls incur booking costs.
+                    </div>
+                    <div class="packages">
+                        <div class="package-card">
+                            <div class="package-title">
+                                Personalized Song Analysis
+                            </div>
+                            <div class="package-price">Request Rate</div>
+                            <div class="package-desc">
+                                Receive feedback on your track's mix, structure,
+                                and vocal performance.<br />
+                                <strong>How to book:</strong> Provide your
+                                track/demo and project background. Booking a
+                                video/phone assessment call is required (fee
+                                applies).
+                            </div>
+                        </div>
+                        <div class="package-card">
+                            <div class="package-title">
+                                A&R Function Sampling
+                            </div>
+                            <div class="package-price">Request Rate</div>
+                            <div class="package-desc">
+                                Demo track assessments using The Architect’s A&R
+                                function.<br />
+                                <strong>How to book:</strong> Send a project
+                                brief and demo. Assessment via one-on-one call
+                                (appointment cost applies).
+                            </div>
+                        </div>
+                        <div class="package-card">
+                            <div class="package-title">Sonic Consultation</div>
+                            <div class="package-price">Request Rate</div>
+                            <div class="package-desc">
+                                90-min in-depth session for critique and
+                                strategic planning.<br />
+                                <strong>How to book:</strong> Submit project
+                                outline and demos. Appointment required and
+                                billed.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tier">
+                    <div class="tier-title">Branding & Merchandise</div>
+                    <div class="tier-desc">
+                        Get exclusive access to official branding and apparel.
+                        Merchandise and full-project production initiated via
+                        project inquiry and rate request.
+                    </div>
+                    <div class="packages">
+                        <div class="package-card">
+                            <div class="package-title">
+                                Architect of Sound Merch
+                            </div>
+                            <div class="package-price">Request Rate</div>
+                            <div class="package-desc">
+                                Apparel and accessories featuring official
+                                branding.<br />
+                                <strong>How to book:</strong> Inquire for your
+                                project, specify merch needs, and provide
+                                details for custom branding quotes.
+                            </div>
+                        </div>
+                        <div class="package-card">
+                            <div class="package-title">
+                                Full EP / Album Production
+                            </div>
+                            <div class="package-price">Request Rate</div>
+                            <div class="package-desc">
+                                Full concept-to-completion audio production.<br />
+                                <strong>How to book:</strong> Send a full
+                                project proposal, background info, and demos for
+                                rate estimation. Booking consultation call
+                                required.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SoundCloud Playlist Embed -->
+            <div class="soundcloud-section">
+                <iframe
+                    width="100%"
+                    height="300"
+                    scrolling="no"
+                    frameborder="no"
+                    allow="autoplay"
+                    src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/soundcloud%3Aplaylists%3A2082666357%3Fsecret_token%3Ds-sO1s9KeNdga&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"
+                ></iframe>
+                <div
+                    style="
+                        font-size: 10px;
+                        color: #cccccc;
+                        line-break: anywhere;
+                        word-break: normal;
+                        overflow: hidden;
+                        white-space: nowrap;
+                        text-overflow: ellipsis;
+                        font-family:
+                            Interstate,
+                            Lucida Grande,
+                            sans-serif;
+                        font-weight: 100;
+                    "
+                >
+                    <a
+                        href="https://soundcloud.com/daniel-cordero"
+                        title="Daniel-Cordero"
+                        target="_blank"
+                        style="color: #cccccc; text-decoration: none"
+                        >Daniel-Cordero</a
+                    >
+                    ·
+                    <a
+                        href="https://soundcloud.com/daniel-cordero/sets/daniel-cordero/s-sO1s9KeNdga"
+                        title="Daniel Cordero"
+                        target="_blank"
+                        style="color: #cccccc; text-decoration: none"
+                    >
+                        Daniel Cordero
+                    </a>
+                </div>
+            </div>
+
+            <!-- Portfolio Gallery -->
+            <div class="portfolio-section">
+                <div class="portfolio-gallery">
+                    <div class="portfolio-item">
+                        <img
+                            src="DSC_5818_b-w.jpg"
+                            alt="Studio Portrait"
+                            class="portfolio-img"
+                        />
+                        <div class="portfolio-caption">Studio Portrait</div>
+                    </div>
+                    <div class="portfolio-item">
+                        <img
+                            src="DSC_5808_b-w.jpg"
+                            alt="Outdoor Shot"
+                            class="portfolio-img"
+                        />
+                        <div class="portfolio-caption">Outdoor Shot</div>
+                    </div>
+                    <div class="portfolio-item">
+                        <img
+                            src="GEVEZ-SCBANDCAMP-EIA-4-of-67.jpg"
+                            alt="Studio Session"
+                            class="portfolio-img"
+                        />
+                        <div class="portfolio-caption">Studio Session</div>
+                    </div>
+                    <div class="portfolio-item">
+                        <img
+                            src="IMG_20220110_181455.jpg"
+                            alt="Live Performance"
+                            class="portfolio-img"
+                        />
+                        <div class="portfolio-caption">Live Performance</div>
+                    </div>
+                    <div class="portfolio-item">
+                        <img
+                            src="bw-2-darker-7.jpg"
+                            alt="Tattoo Detail"
+                            class="portfolio-img"
+                        />
+                        <div class="portfolio-caption">Tattoo Detail</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="footer">
+                Daniel Cordero © 2025 | The Architect of Sound
+            </div>
+        </div>
+
+        <script>
+            // Basic client-side email validation and feedback
+            document
+                .getElementById("mailForm")
+                .addEventListener("submit", function (e) {
+                    e.preventDefault();
+                    var emailInput = document.getElementById("emailInput");
+                    var successMsg = document.getElementById("successMsg");
+                    emailInput.classList.remove("error");
+                    successMsg.classList.remove("active");
+
+                    var emailVal = emailInput.value.trim();
+                    var valid = /^[\w\-\.]+@([\w\-]+\.)+[\w\-]{2,4}$/.test(
+                        emailVal,
+                    );
+                    if (valid) {
+                        successMsg.classList.add("active");
+                        emailInput.value = "";
+                    } else {
+                        emailInput.classList.add("error");
+                    }
+                });
+        </script>
+    </body>
+</html>
